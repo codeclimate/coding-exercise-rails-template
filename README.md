@@ -2,9 +2,9 @@
 
 
 - clone this repo
-- `bundle install`
-- `rspec`
-- `rails s` # if you want to start up rails =)
+- `bin/bundle install`
+- `bin/rails spec` # to run tests
+- `bin/bundle exec foreman start` # if you want to start up rails =)
 
 
 # To reproduce this setup
@@ -16,12 +16,15 @@ rails new coding-exercise
 cd coding-exercise
 echo 'gem "rspec-rails", group: [:development, :test]' >> Gemfile
 echo 'gem "rexml"' >> Gemfile
+echo 'gem "foreman"' >> Gemfile
 sed -E -i "s/ruby '3.0.0'/ruby '~> 3'/" Gemfile
-bundle install
-rails generate rspec:install
-rails generate scaffold Exercise name:string
-rails db:migrate && rails db:test:prepare
-rspec
+bin/bundle install
+bin/rails generate rspec:install
+bin/rails generate scaffold Exercise name:string
+bin/rails db:migrate && rails db:test:prepare
+
+echo "serve: bin/rails server" >> Procfile
+echo "webpack: bin/webpack-dev-server" >> Procfile
 ```
 
 You might want to drop a few extra files might not be cruicial or relevant for the exercise
