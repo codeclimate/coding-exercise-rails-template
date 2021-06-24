@@ -16,6 +16,7 @@ rails new coding-exercise
 cd coding-exercise
 echo 'gem "rspec-rails", group: [:development, :test]' >> Gemfile
 echo 'gem "rexml"' >> Gemfile
+sed -E -i "s/ruby '3.0.0'/ruby '~> 3'/" Gemfile
 bundle install
 rails generate rspec:install
 rails generate scaffold Exercise name:string
